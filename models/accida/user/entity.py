@@ -1,4 +1,5 @@
 from enum import Enum
+from models.common.timestamp_mixin import TimestampMixin
 from typing import List
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
@@ -13,7 +14,7 @@ class UserRoleEnum(Enum):
     VIEWER = "viewer"
 
 
-class UserRole(AccidaBase):
+class UserRole(TimestampMixin, AccidaBase):
 
     __tablename__ = "user_roles"
 
@@ -26,7 +27,7 @@ class UserRole(AccidaBase):
         self.name = name
 
 
-class User(AccidaBase):
+class User(TimestampMixin, AccidaBase):
 
     __tablename__ = "users"
 

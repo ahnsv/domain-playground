@@ -1,10 +1,11 @@
+from models.common.timestamp_mixin import TimestampMixin
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import Integer
 from models.accida.base import AccidaBase
 
 
-class Feedback(AccidaBase):
+class Feedback(TimestampMixin, AccidaBase):
 
     __tablename__ = "feedbacks"
 
