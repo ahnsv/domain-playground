@@ -51,5 +51,5 @@ class User(TimestampMixin, AccidaBase):
             role.name not in [UserRoleEnum.ADMIN, UserRoleEnum.WRITER]
             for role in self.roles
         ):
-            raise Exception("Permission") # TODO: make common errors
+            raise Exception("Permission")  # TODO: make common errors
         self.feedbacks.append(feedback)

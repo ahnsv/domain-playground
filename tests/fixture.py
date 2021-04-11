@@ -1,4 +1,3 @@
-from models.accida.user.entity import User
 import os
 import pytest
 from sqlalchemy import create_engine
@@ -9,7 +8,9 @@ from sqlalchemy.orm.session import sessionmaker
 @pytest.fixture(scope="module")
 def connection():
     engine = create_engine(
-        url=os.getenv("TEST_DB_URL", "sqlite:///./mem.db"), encoding="utf-8", echo=True
+        url=os.getenv("TEST_DB_URL", "sqlite:///./mem.db"),
+        encoding="utf-8",
+        echo=True,
     )
     return engine.connect()
 

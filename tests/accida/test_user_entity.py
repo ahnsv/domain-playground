@@ -26,7 +26,9 @@ def test_user_creation(accida_session: Session):
 def test_user_create_feedback(accida_session: Session):
     test_user = accida_session.query(User).filter_by(name="test2").first()
     test_model = (
-        accida_session.query(Model).filter_by(name="accida", version="v2.0.0").first()
+        accida_session.query(Model)
+        .filter_by(name="accida", version="v2.0.0")
+        .first()
     )
     next_feedback = Feedback(user_id=test_user.id, model_id=test_model.id)
     test_user.create_feedback(next_feedback)
