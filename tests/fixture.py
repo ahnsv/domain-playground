@@ -9,8 +9,7 @@ from sqlalchemy.orm.session import sessionmaker
 @pytest.fixture(scope="module")
 def connection():
     engine = create_engine(
-        url=os.getenv("TEST_DB_URL", "sqlite:///./mem.db"), encoding="utf-8",
-        echo=True
+        url=os.getenv("TEST_DB_URL", "sqlite:///./mem.db"), encoding="utf-8", echo=True
     )
     return engine.connect()
 
@@ -31,11 +30,6 @@ def db_session(setup_database, connection):
     session = scoped_session(
         sessionmaker(autocommit=False, autoflush=False, bind=connection)
     )
-    user1 = User(name="test", hashed_pw="user")
-    user2 = User(name="test2", hashed_pw="user")
-
-    session.add_all([user1, user2])
-    session.commit()
 
     yield session
     transaction.rollback()
