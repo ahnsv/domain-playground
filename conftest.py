@@ -1,1 +1,1 @@
-pytest_plugins = ["tests.fixture"]
+pytest_plugins = ["tests.fixture", "tests.accida.conftest"]

@@ -34,11 +34,11 @@ class User(AccidaBase):
     name = Column(String(30), nullable=False)
     hashed_pw = Column(String(100), nullable=False)
     roles: List = relationship("UserRole")
+    feedbacks: List = relationship("Feedback")
 
-    def __init__(self, name: str, hashed_pw: str, roles: List[UserRole] = []) -> None:
+    def __init__(self, name: str, hashed_pw: str) -> None:
         self.name = name
         self.hashed_pw = hashed_pw
-        self.roles = roles
 
     def update_roles(self, next_roles: List[UserRole]):
         # TODO: check equality
