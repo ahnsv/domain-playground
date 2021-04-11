@@ -1,4 +1,5 @@
 from enum import Enum
+from models.accida.feedback.entity import Feedback
 from models.common.timestamp_mixin import TimestampMixin
 from typing import List
 from sqlalchemy.orm import relationship
@@ -44,3 +45,11 @@ class User(TimestampMixin, AccidaBase):
     def update_roles(self, next_roles: List[UserRole]):
         # TODO: check equality
         self.roles = next_roles
+
+    def create_feedback(self, feedback: Feedback):
+        if all(
+            role.name not in [UserRoleEnum.ADMIN, UserRoleEnum.WRITER]
+            for role in self.roles
+        ):
+            raise Exception("Permission") # TODO: make common errors
+        self.feedbacks.append(feedback)
